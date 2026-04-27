@@ -1,0 +1,57 @@
+.appContainer {
+  display: flex;
+  flex-direction: column;
+  height: 100vh; /* Full viewport height */
+  width: 100vw;
+  overflow: hidden;
+}
+
+.header {
+  background-color: #1a1a1a;
+  color: white;
+  padding: 1rem;
+  text-align: center;
+  box-shadow: 0 2px 10px rgba(0,0,0,0.2);
+  z-index: 10; /* Keep above map */
+}
+
+.header h1 {
+  font-size: 1.5rem;
+  font-weight: 600;
+  letter-spacing: 1px;
+}
+
+.mainContent {
+  flex: 1; /* Take up all remaining space */
+  position: relative;
+}
+
+.controlPanel {
+  background-color: white;
+  padding: 1.5rem;
+  border-top-left-radius: 20px;
+  border-top-right-radius: 20px;
+  box-shadow: 0 -4px 20px rgba(0,0,0,0.1);
+  z-index: 10; /* Keep above map */
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+}
+
+.statBox {
+  text-align: center;
+}
+
+.statValue {
+  font-size: 1.5rem;
+  font-weight: bold;
+  color: #2c3e50;
+}
+
+.statLabel {
+  font-size: 0.875rem;
+  color: #7f8c8d;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  margin-top: 0.25rem;
+}
