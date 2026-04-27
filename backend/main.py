@@ -10,7 +10,7 @@ app = FastAPI(title="Run Planner API")
 # Configure CORS so our React frontend can communicate with the backend
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=["http://localhost:5173"], # Vite's default port
+    allow_origins=["http://localhost:5173"],
     allow_credentials=True,
     allow_methods=["*"],
     allow_headers=["*"],
@@ -41,7 +41,6 @@ def get_runs(current_user = Depends(get_current_user)):
     """
     Get all runs for the currently logged in user.
     """
-    # Fetch runs that belong ONLY to this user
     response = supabase.table("runs").select("*").eq("user_id", current_user.id).execute()
     
     return response.data
