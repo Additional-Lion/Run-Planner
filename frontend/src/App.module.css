@@ -118,9 +118,65 @@
 }
 
 .saveButton:disabled {
-  background-color: #e0e0e0;
-  color: #999;
+  background-color: #a3cfa1; /* Greyish green */
+  color: #666;
   cursor: not-allowed;
+}
+
+.guestSaveButton {
+  background-color: #a3cfa1; /* Greyish green */
+  color: #666;
+  border: none;
+  padding: 12px 24px;
+  border-radius: 12px;
+  font-weight: bold;
+  font-size: 1rem;
+  cursor: not-allowed;
+}
+
+/* Tooltip container */
+.tooltipContainer {
+  position: relative;
+  display: inline-block;
+}
+
+/* Tooltip text */
+.tooltipText {
+  visibility: hidden;
+  width: 180px;
+  background-color: #1a1a1a;
+  color: #fff;
+  text-align: center;
+  border-radius: 8px;
+  padding: 8px 12px;
+  position: absolute;
+  z-index: 100;
+  bottom: 125%; /* Position above the button */
+  left: 50%;
+  margin-left: -90px;
+  opacity: 0;
+  transition: opacity 0.3s;
+  font-size: 0.8rem;
+  box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+  pointer-events: none;
+}
+
+/* Tooltip arrow */
+.tooltipText::after {
+  content: "";
+  position: absolute;
+  top: 100%;
+  left: 50%;
+  margin-left: -5px;
+  border-width: 5px;
+  border-style: solid;
+  border-color: #1a1a1a transparent transparent transparent;
+}
+
+/* Show the tooltip text when hovering over the container */
+.tooltipContainer:hover .tooltipText {
+  visibility: visible;
+  opacity: 1;
 }
 
 /* Modal Styles */

@@ -39,17 +39,24 @@ function App() {
     setRouteCoords(newRoute);
   }, []);
 
-  if (!session) {
-    return <Auth />;
-  }
-
   const handleLogout = async () => {
     await supabase.auth.signOut();
+    setSession(null);
+    // Force a full page reload to clear all local state (like map pins) 
+    // and reset the app to a clean guest state.
+    window.location.href = '/map';
   };
 
   const handleSaveRun = async (e: React.FormEvent) => {
     e.preventDefault();
-    if (!session || !distance || isSaving) return;
+    if (!session) {
+      alert("Please log in to save your runs!");
+      navigate('/login');
+      setShowSaveModal(false);
+      return;
+    }
+    
+    if (!distance || isSaving) return;
     
     setIsSaving(true);
     try {
@@ -95,7 +102,11 @@ function App() {
           <div className={styles.navLinks}>
             <Link to="/map" className={styles.navLink}>Map</Link>
             <Link to="/runs" className={styles.navLink}>My History</Link>
-            <button onClick={handleLogout} className={styles.logoutButton}>Logout</button>
+            {session ? (
+              <button onClick={handleLogout} className={styles.logoutButton}>Logout</button>
+            ) : (
+              <Link to="/login" className={styles.navLink}>Log In</Link>
+            )}
           </div>
         </div>
       </header>
@@ -106,6 +117,7 @@ function App() {
           <Route path="/" element={<Navigate to="/map" replace />} />
           <Route path="/map" element={<Map onRouteUpdate={handleRouteUpdate} />} />
           <Route path="/runs" element={<History />} />
+          <Route path="/login" element={session ? <Navigate to="/map" replace /> : <Auth />} />
           {/* Catch-all route to redirect undefined paths back to the map */}
           <Route path="*" element={<Navigate to="/map" replace />} />
         </Routes>
@@ -122,13 +134,35 @@ function App() {
             <div className={styles.statValue}>{calories}</div>
             <div className={styles.statLabel}>Calories</div>
           </div>
-          <button 
-            className={styles.saveButton} 
-            disabled={distance === 0}
-            onClick={() => setShowSaveModal(true)}
-          >
-            Save Run
-          </button>
+          
+          {session ? (
+            <div className={styles.tooltipContainer}>
+              {distance === 0 && (
+                <span className={styles.tooltipText}>Add at least 2 points to the map to save</span>
+              )}
+              <button 
+                className={styles.saveButton} 
+                disabled={distance === 0}
+                onClick={() => setShowSaveModal(true)}
+              >
+                Save Run
+              </button>
+            </div>
+          ) : (
+            <div className={styles.tooltipContainer}>
+              <span className={styles.tooltipText}>
+                {distance === 0 
+                  ? "Add at least 2 points to the map to save" 
+                  : "Please log in to save your run"}
+              </span>
+              <button 
+                className={styles.guestSaveButton}
+                disabled={true}
+              >
+                Save Run
+              </button>
+            </div>
+          )}
         </footer>
       )}
 

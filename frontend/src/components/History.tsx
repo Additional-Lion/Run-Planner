@@ -14,6 +14,7 @@ interface Run {
 export default function History() {
   const [runs, setRuns] = useState<Run[]>([]);
   const [loading, setLoading] = useState(true);
+  const [isAuthenticated, setIsAuthenticated] = useState(true);
 
   useEffect(() => {
     const fetchRuns = async () => {
@@ -22,10 +23,12 @@ export default function History() {
         const { data: { user } } = await supabase.auth.getUser();
         
         if (!user) {
+          setIsAuthenticated(false);
           setRuns([]);
           return;
         }
 
+        setIsAuthenticated(true);
         const { data, error } = await supabase
           .from('runs')
           .select('*')
@@ -45,6 +48,17 @@ export default function History() {
   }, []);
 
   if (loading) return <div className={styles.loading}>Loading your history...</div>;
+
+  if (!isAuthenticated) {
+    return (
+      <div className={styles.container}>
+        <h2 className={styles.title}>My Running History</h2>
+        <div className={styles.emptyState}>
+          <p>Please log in to see your history.</p>
+        </div>
+      </div>
+    );
+  }
 
   return (
     <div className={styles.container}>
