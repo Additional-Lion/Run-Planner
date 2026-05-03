@@ -103,9 +103,11 @@ function App() {
       {/* Main Routing Area */}
       <main className={styles.mainContent}>
         <Routes>
-          <Route path="/" element={<Navigate to="/map" />} />
+          <Route path="/" element={<Navigate to="/map" replace />} />
           <Route path="/map" element={<Map onRouteUpdate={handleRouteUpdate} />} />
           <Route path="/runs" element={<History />} />
+          {/* Catch-all route to redirect undefined paths back to the map */}
+          <Route path="*" element={<Navigate to="/map" replace />} />
         </Routes>
       </main>
 
