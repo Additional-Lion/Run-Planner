@@ -51,39 +51,99 @@ export default function History() {
 
   if (!isAuthenticated) {
     return (
-      <div className={styles.container}>
-        <h2 className={styles.title}>My Running History</h2>
-        <div className={styles.emptyState}>
-          <p>Please log in to see your history.</p>
+      <div className={styles.pageWrapper}>
+        <div className={styles.topoContainer}>
+          <div className={`${styles.peak} ${styles.peak1}`}>
+            <div className={`${styles.contourLine} ${styles.p1_l1}`} />
+            <div className={`${styles.contourLine} ${styles.p1_l2}`} />
+            <div className={`${styles.contourLine} ${styles.p1_l3}`} />
+            <div className={`${styles.contourLine} ${styles.p1_l4}`} />
+            <div className={`${styles.contourLine} ${styles.p1_l5}`} />
+          </div>
+          <div className={`${styles.peak} ${styles.peak2}`}>
+            <div className={`${styles.contourLine} ${styles.p2_l1}`} />
+            <div className={`${styles.contourLine} ${styles.p2_l2}`} />
+            <div className={`${styles.contourLine} ${styles.p2_l3}`} />
+            <div className={`${styles.contourLine} ${styles.p2_l4}`} />
+          </div>
+          <div className={`${styles.peak} ${styles.peak3}`}>
+            <div className={`${styles.contourLine} ${styles.p3_l1}`} />
+            <div className={`${styles.contourLine} ${styles.p3_l2}`} />
+          </div>
+          <div className={styles.activePath} />
+        </div>
+        
+        <div className={styles.container}>
+          <h2 className={styles.title}>My Running History</h2>
+          <div className={styles.emptyState}>
+            <p>Please log in to see your history.</p>
+          </div>
         </div>
       </div>
     );
   }
 
   return (
-    <div className={styles.container}>
-      <h2 className={styles.title}>My Running History</h2>
-      
-      {runs.length === 0 ? (
-        <div className={styles.emptyState}>
-          <p>No runs saved yet. Get out there and start planning!</p>
+    <div className={styles.pageWrapper}>
+      {/* Topographic Background Decorations */}
+      <div className={styles.topoContainer}>
+        {/* Peak 1 - Top Left */}
+        <div className={`${styles.peak} ${styles.peak1}`}>
+          <div className={`${styles.contourLine} ${styles.p1_l1}`} />
+          <div className={`${styles.contourLine} ${styles.p1_l2}`} />
+          <div className={`${styles.contourLine} ${styles.p1_l3}`} />
+          <div className={`${styles.contourLine} ${styles.p1_l4}`} />
+          <div className={`${styles.contourLine} ${styles.p1_l5}`} />
         </div>
-      ) : (
-        <div className={styles.runList}>
-          {runs.map((run) => (
-            <div key={run.id} className={styles.runCard}>
-              <div className={styles.runInfo}>
-                <span className={styles.date}>{new Date(run.run_date).toLocaleDateString()}</span>
-                <span className={styles.distance}>{run.distance.toFixed(2)} km</span>
-              </div>
-              <div className={styles.runDetails}>
-                <span>{run.duration_minutes} mins</span>
-                <span>{run.calories} kcal</span>
-              </div>
-            </div>
-          ))}
+
+        {/* Peak 2 - Bottom Right */}
+        <div className={`${styles.peak} ${styles.peak2}`}>
+          <div className={`${styles.contourLine} ${styles.p2_l1}`} />
+          <div className={`${styles.contourLine} ${styles.p2_l2}`} />
+          <div className={`${styles.contourLine} ${styles.p2_l3}`} />
+          <div className={`${styles.contourLine} ${styles.p2_l4}`} />
         </div>
-      )}
+
+        {/* Peak 3 - Middle Right */}
+        <div className={`${styles.peak} ${styles.peak3}`}>
+          <div className={`${styles.contourLine} ${styles.p3_l1}`} />
+          <div className={`${styles.contourLine} ${styles.p3_l2}`} />
+        </div>
+
+        {/* The dashed active trail */}
+        <div className={styles.activePath} />
+      </div>
+
+      <div className={styles.container}>
+        <h2 className={styles.title}>My Running History</h2>
+        
+        {runs.length === 0 ? (
+          <div className={styles.emptyState}>
+            <p>No runs saved yet. Get out there and start planning!</p>
+          </div>
+        ) : (
+          <div className={styles.runList}>
+            {runs.map((run) => (
+              <div key={run.id} className={styles.runCard}>
+                <div className={styles.runInfo}>
+                  <span className={styles.date}>{new Date(run.run_date).toLocaleDateString()}</span>
+                  <span className={styles.distance}>{run.distance.toFixed(2)} <small style={{fontSize: '0.6em', opacity: 0.6}}>KM</small></span>
+                </div>
+                <div className={styles.runDetails}>
+                  <div className={styles.statItem}>
+                    <span className={styles.statValue}>{run.duration_minutes}</span>
+                    <span className={styles.statLabel}>Mins</span>
+                  </div>
+                  <div className={styles.statItem}>
+                    <span className={styles.statValue}>{run.calories}</span>
+                    <span className={styles.statLabel}>Kcal</span>
+                  </div>
+                </div>
+              </div>
+            ))}
+          </div>
+        )}
+      </div>
     </div>
   );
 }
