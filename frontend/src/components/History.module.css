@@ -199,6 +199,26 @@
   background: rgba(255, 118, 117, 0.1);
 }
 
+.viewPathButton {
+  position: absolute;
+  bottom: 10px;
+  right: 45px;
+  background: rgba(53, 236, 47, 0.1);
+  border: 1px solid rgba(53, 236, 47, 0.3);
+  color: #27ae60;
+  font-size: 0.8rem;
+  font-weight: 600;
+  cursor: pointer;
+  padding: 5px 10px;
+  border-radius: 5px;
+  transition: all 0.2s;
+}
+
+.viewPathButton:hover {
+  background: #35ec2f;
+  color: #ffffff;
+}
+
 .runInfo {
   display: flex;
   flex-direction: column;
