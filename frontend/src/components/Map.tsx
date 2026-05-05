@@ -43,8 +43,18 @@ const LocationMarker = ({ points, setPoints, routeLine }: { points: LatLng[], se
 };
 
 const Map: React.FC<MapProps> = ({ onRouteUpdate, onPointCountChange, undoPointRef, clearRouteRef }) => {
-  // Default center coordinates (London)
-  const defaultCenter: [number, number] = [51.505, -0.09];
+  // Default center coordinates (NYC City Hall Park)
+  const defaultCenter: [number, number] = [40.712754, -74.0087971];
+  const [map, setMap] = useState<L.Map | null>(null);
+  const [userLocation, setUserLocation] = useState<LatLng | null>(null);
+
+  // Custom icon for user location (blue dot)
+  const userLocationIcon = L.divIcon({
+    className: styles.userLocationDot,
+    html: `<div class="${styles.dotInner}"></div>`,
+    iconSize: [20, 20],
+    iconAnchor: [10, 10]
+  });
 
   // State to hold all the clicked marker points
   const [points, setPoints] = useState<LatLng[]>([]);
@@ -59,6 +69,27 @@ const Map: React.FC<MapProps> = ({ onRouteUpdate, onPointCountChange, undoPointR
     if (undoPointRef) undoPointRef.current = () => setPoints(prev => prev.slice(0, -1));
     if (clearRouteRef) clearRouteRef.current = () => setPoints([]);
   }, [undoPointRef, clearRouteRef]);
+
+  // Handle "Find Me" logic
+  useEffect(() => {
+    if (!map) return;
+
+    const onLocationFound = (e: L.LocationEvent) => {
+      setUserLocation(e.latlng);
+    };
+
+    map.on('locationfound', onLocationFound);
+
+    const handleFindMe = () => {
+      map.locate({ setView: true, maxZoom: 16 });
+    };
+
+    window.addEventListener('find-me', handleFindMe);
+    return () => {
+      window.removeEventListener('find-me', handleFindMe);
+      map.off('locationfound', onLocationFound);
+    };
+  }, [map]);
 
   // Fetch route from OSRM whenever points change
   useEffect(() => {
@@ -113,12 +144,14 @@ const Map: React.FC<MapProps> = ({ onRouteUpdate, onPointCountChange, undoPointR
         zoom={14}
         scrollWheelZoom={true}
         className={styles.mapContainer}
+        ref={setMap}
       >
         <TileLayer
           attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
           url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
         />
         <LocationMarker points={points} setPoints={setPoints} routeLine={routeLine} />
+        {userLocation && <Marker position={userLocation} icon={userLocationIcon} zIndexOffset={1000} />}
       </MapContainer>
     </div>
   );

@@ -165,6 +165,12 @@ function App() {
           
           <div className={styles.mapControls}>
             <button 
+              className={styles.findMeButton}
+              onClick={() => window.dispatchEvent(new CustomEvent('find-me'))}
+            >
+              Find Me
+            </button>
+            <button 
               className={`${styles.controlButton} ${pointCount === 0 ? styles.disabledButton : ''}`} 
               onClick={() => undoPointRef.current?.()}
               disabled={pointCount === 0}
@@ -180,34 +186,42 @@ function App() {
             </button>
           </div>
           
-          {session ? (
-            <div className={styles.tooltipContainer}>
-              {distance === 0 && (
-                <span className={styles.tooltipText}>Add at least 2 points to the map to save</span>
-              )}
-              <button 
-                className={styles.saveButton} 
-                disabled={distance === 0}
-                onClick={() => setShowSaveModal(true)}
-              >
-                Save Run
-              </button>
-            </div>
-          ) : (
-            <div className={styles.tooltipContainer}>
-              <span className={styles.tooltipText}>
-                {distance === 0 
-                  ? "Add at least 2 points to the map to save" 
-                  : "Please log in to save your run"}
-              </span>
-              <button 
-                className={styles.guestSaveButton}
-                disabled={true}
-              >
-                Save Run
-              </button>
-            </div>
-          )}
+          <div className={styles.tooltipContainer}>
+            {session ? (
+              <>
+                {distance === 0 && (
+                  <span className={styles.tooltipText}>Add at least 2 points to the map to save</span>
+                )}
+                <button 
+                  className={styles.saveButton} 
+                  disabled={distance === 0}
+                  onClick={() => setShowSaveModal(true)}
+                >
+                  Save Run
+                </button>
+              </>
+            ) : (
+              <>
+                <span className={styles.tooltipText}>
+                  {distance === 0 
+                    ? "Add at least 2 points to the map to save" 
+                    : "Please log in to save your run"}
+                </span>
+                <button 
+                  className={styles.guestSaveButton}
+                  disabled={true}
+                >
+                  Save Run
+                </button>
+              </>
+            )}
+          </div>
+          <button 
+            className={styles.findMeMobileButton}
+            onClick={() => window.dispatchEvent(new CustomEvent('find-me'))}
+          >
+            Find Me
+          </button>
         </footer>
       )}
 

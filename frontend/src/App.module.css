@@ -36,23 +36,6 @@
   align-items: center;
 }
 
-@media (max-width: 768px) {
-  .headerNav {
-    flex-direction: column;
-    gap: 15px;
-    padding: 0.75rem 0;
-  }
-
-  .navLinks {
-    gap: 1.5rem;
-    font-size: 0.9rem;
-  }
-
-  .logo {
-    font-size: 1.3rem;
-  }
-}
-
 .navLink {
   color: white;
   text-decoration: none;
@@ -105,44 +88,38 @@
   gap: 10px;
 }
 
-@media (max-width: 768px) {
-  .controlPanel {
-    padding: 1rem 0.5rem;
-    flex-wrap: wrap;
-    gap: 10px;
-    justify-content: center;
-  }
+.findMeButton, .findMeMobileButton {
+  background-color: #007bff;
+  color: white;
+  border: none;
+  padding: 8px 16px;
+  border-radius: 8px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background 0.2s;
+  outline: none;
+  -webkit-tap-highlight-color: transparent;
+}
 
-  .statBox {
-    flex: 1 1 40%;
-  }
+.findMeButton:hover, .findMeMobileButton:hover {
+  background-color: #0056b3;
+}
 
-  .statValue {
-    font-size: 1.2rem;
-  }
+.findMeButton:active, .findMeMobileButton:active {
+  background-color: #004085;
+}
 
-  .mapControls {
-    flex-direction: column-reverse;
-    gap: 5px;
-    flex: 1 1 20%;
+@media (hover: none) {
+  .findMeButton:hover, .findMeMobileButton:hover {
+    background-color: #007bff; /* Reset hover on touch devices */
   }
+  .findMeButton:active, .findMeMobileButton:active {
+    background-color: #004085;
+  }
+}
 
-  .controlButton {
-    padding: 6px 12px;
-    font-size: 0.8rem;
-    width: 100%;
-  }
-
-  .saveButton, .guestSaveButton {
-    padding: 10px 15px;
-    font-size: 0.9rem;
-    flex: 1 1 100%;
-    margin-top: 5px;
-  }
-  
-  .tooltipContainer {
-    width: 100%;
-  }
+.findMeMobileButton {
+  display: none; /* Hidden by default on desktop */
 }
 
 .controlButton {
@@ -220,7 +197,9 @@
 /* Tooltip container */
 .tooltipContainer {
   position: relative;
-  display: inline-block;
+  display: flex;
+  gap: 10px;
+  align-items: center;
 }
 
 /* Tooltip text */
@@ -362,4 +341,77 @@
 .modalButtons button[type="submit"] {
   background: #35ec2f;
   color: #1a1a1a;
+}
+
+@media (max-width: 768px) {
+  .headerNav {
+    flex-direction: column;
+    gap: 15px;
+    padding: 0.75rem 0;
+  }
+
+  .navLinks {
+    gap: 1.5rem;
+    font-size: 0.9rem;
+  }
+
+  .logo {
+    font-size: 1.3rem;
+  }
+
+  .controlPanel {
+    padding: 1rem 0.5rem;
+    flex-wrap: wrap;
+    gap: 10px;
+    justify-content: center;
+  }
+
+  .statBox {
+    flex: 1 1 40%;
+  }
+
+  .statValue {
+    font-size: 1.2rem;
+  }
+
+  .mapControls {
+    flex-direction: column-reverse;
+    gap: 5px;
+    flex: 1 1 100%; /* Take full width on mobile */
+  }
+
+  .findMeButton {
+    display: none;
+  }
+
+  .findMeMobileButton {
+    display: block;
+    flex: 0 1 30%; /* Take right space */
+    padding: 12px 5px; /* Consistent padding */
+    font-size: 0.8rem;
+    margin-top: 5px;
+    height: 48px; /* Explicit height to match Save button */
+    box-sizing: border-box;
+  }
+
+  .controlButton {
+    padding: 12px;
+    font-size: 0.9rem;
+    width: 100%; /* Wide version */
+  }
+
+  .saveButton, .guestSaveButton {
+    padding: 12px 15px;
+    font-size: 0.9rem;
+    flex: 1 1 65%; /* Wider button */
+    margin-top: 5px;
+    width: 100%;
+    height: 48px; /* Explicit height to match Find Me button */
+    box-sizing: border-box;
+  }
+
+  .tooltipContainer {
+    flex: 1 1 65%; /* Match save button width */
+  }
+
 }
