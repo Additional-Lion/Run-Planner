@@ -116,7 +116,9 @@ export default function History() {
         <div className={styles.container}>
           <h2 className={styles.title}>My Running History</h2>
           <div className={styles.emptyState}>
-            <p>Please log in to see your history.</p>
+            <p>
+              Please <span className={styles.loginLink} onClick={() => window.location.href = '/login'}>log in</span> to see your history.
+            </p>
           </div>
         </div>
       </div>
