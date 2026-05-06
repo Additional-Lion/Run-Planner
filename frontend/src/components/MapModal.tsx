@@ -45,7 +45,7 @@ const MapModal: React.FC<MapModalProps> = ({ isOpen, onClose, coordinates }) => 
             attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
             url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
           />
-          <Polyline positions={coordinates} color="blue" weight={5} opacity={0.8} />
+          <Polyline positions={coordinates} color="#007bff" weight={5} opacity={0.8} />
           <Marker position={startPoint} icon={StartIcon} />
           <Marker position={endPoint} icon={FinishIcon} />
           <FitBounds coordinates={coordinates} />

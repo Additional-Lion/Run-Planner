@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { supabase } from '../supabaseClient';
 import styles from './History.module.css';
 import MapModal from './MapModal';
+import StoryModal from './StoryModal';
 
 interface Run {
   id: string;
@@ -19,6 +20,7 @@ export default function History() {
   const [isAuthenticated, setIsAuthenticated] = useState(true);
   const [mousePos, setMousePos] = useState({ x: 0, y: 0 });
   const [selectedRoute, setSelectedRoute] = useState<[number, number][] | null>(null);
+  const [storyRun, setStoryRun] = useState<Run | null>(null);
 
   const handleMouseMove = (e: React.MouseEvent) => {
     setMousePos({ x: e.clientX, y: e.clientY });
@@ -196,6 +198,13 @@ export default function History() {
                   View Path
                 </button>
                 <button 
+                  className={styles.storyButton} 
+                  onClick={() => setStoryRun(run)}
+                  aria-label="Create Story Image"
+                >
+                  Create Story
+                </button>
+                <button 
                   className={styles.deleteButton} 
                   onClick={() => deleteRun(run.id)}
                   aria-label="Delete run"
@@ -211,6 +220,11 @@ export default function History() {
           isOpen={!!selectedRoute} 
           onClose={() => setSelectedRoute(null)} 
           coordinates={selectedRoute || []} 
+        />
+        <StoryModal 
+          isOpen={!!storyRun} 
+          onClose={() => setStoryRun(null)} 
+          run={storyRun} 
         />
       </div>
     </div>

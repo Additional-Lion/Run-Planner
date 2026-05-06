@@ -233,6 +233,26 @@
   color: #ffffff;
 }
 
+.storyButton {
+  position: absolute;
+  bottom: 10px;
+  right: 135px; /* Shifted left to make room for View Path */
+  background: rgba(0, 123, 255, 0.1);
+  border: 1px solid rgba(0, 123, 255, 0.3);
+  color: #007bff;
+  font-size: 0.8rem;
+  font-weight: 600;
+  cursor: pointer;
+  padding: 5px 10px;
+  border-radius: 5px;
+  transition: all 0.2s;
+}
+
+.storyButton:hover {
+  background: #007bff;
+  color: #ffffff;
+}
+
 .runInfo {
   display: flex;
   flex-direction: column;
@@ -297,6 +317,13 @@
   .viewPathButton {
     position: static;
     margin-top: 10px;
+    text-align: center;
+    width: 100%;
+    padding: 10px;
+  }
+
+  .storyButton {
+    position: static;
     text-align: center;
     width: 100%;
     padding: 10px;
