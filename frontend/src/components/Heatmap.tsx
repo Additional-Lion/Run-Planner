@@ -15,27 +15,47 @@ const HeatLayer = ({ points }: { points: [number, number, number][] }) => {
 
     let heatLayer: any = null;
 
-    // Small timeout to allow container animations (like sidebars) to complete
-    // and Leaflet to correctly calculate dimensions.
+    // Small timeout to allow container animations to complete
     const timeoutId = setTimeout(() => {
       map.invalidateSize();
       const size = map.getSize();
       
-      // Only proceed if the container has a valid height/width
       if (size.x > 0 && size.y > 0) {
-        // @ts-ignore - leaflet.heat adds heatLayer to L
+        // @ts-ignore
         heatLayer = L.heatLayer(points, {
-          radius: 10,
-          blur: 8,
+          radius: 12,
+          blur: 10,
           maxZoom: 17,
-          gradient: { 0.4: 'blue', 0.6: 'cyan', 0.7: 'lime', 0.8: 'yellow', 1: 'red' }
+          gradient: { 0.4: '#007bff', 0.6: '#00d4ff', 0.7: '#00ffcc', 0.8: '#fffb00', 1: '#ff0000' }
         }).addTo(map);
 
-        // Fit bounds to points if they exist
-        const bounds = L.latLngBounds(points.map(p => [p[0], p[1]]));
-        map.fitBounds(bounds, { padding: [30, 30] });
+        // Find the most "dense" point (the point with the most neighbors within a small radius)
+        let maxDensity = -1;
+        let densestPoint: [number, number] = [points[0][0], points[0][1]];
+        
+        // Sample points for performance if there are too many
+        const step = Math.max(1, Math.floor(points.length / 500));
+        for (let i = 0; i < points.length; i += step) {
+          const p1 = points[i];
+          let currentDensity = 0;
+          
+          // Check against a subset of points to find density
+          for (let j = 0; j < points.length; j += Math.max(1, Math.floor(points.length / 200))) {
+            const p2 = points[j];
+            const dist = Math.sqrt(Math.pow(p1[0] - p2[0], 2) + Math.pow(p1[1] - p2[1], 2));
+            if (dist < 0.005) currentDensity++; // Approx 500m radius
+          }
+          
+          if (currentDensity > maxDensity) {
+            maxDensity = currentDensity;
+            densestPoint = [p1[0], p1[1]];
+          }
+        }
+
+        // Center on the densest area and zoom in
+        map.setView(densestPoint, 14, { animate: true });
       }
-    }, 100);
+    }, 150);
 
     return () => {
       clearTimeout(timeoutId);
