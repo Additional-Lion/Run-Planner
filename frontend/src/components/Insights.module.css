@@ -171,6 +171,31 @@
   box-shadow: 0 4px 25px rgba(0, 0, 123, 0.04);
 }
 
+.storyButton {
+  margin-top: 0.5rem;
+  background: #007bff;
+  color: white;
+  border: none;
+  padding: 10px;
+  border-radius: 12px;
+  font-weight: 700;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  width: 100%;
+  font-size: 0.85rem;
+  box-shadow: 0 4px 15px rgba(0, 123, 255, 0.2);
+}
+
+.storyButton:hover {
+  background: #0056b3;
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(0, 123, 255, 0.3);
+}
+
+.storyButton:active {
+  transform: translateY(0);
+}
+
 .statItem {
   display: flex;
   flex-direction: column;

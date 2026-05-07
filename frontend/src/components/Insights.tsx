@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { supabase } from '../supabaseClient';
 import styles from './Insights.module.css';
 import Heatmap from './Heatmap';
+import HeatmapStoryModal from './HeatmapStoryModal';
 
 interface Run {
   id: string;
@@ -39,6 +40,7 @@ export default function Insights() {
   const [isAuthenticated, setIsAuthenticated] = useState(true);
   const [selectedRange, setSelectedRange] = useState<TimeRange>('weekly');
   const [mousePos, setMousePos] = useState({ x: 0, y: 0 });
+  const [isStoryModalOpen, setIsStoryModalOpen] = useState(false);
   const [stats, setStats] = useState<{
     weekly: Stats;
     monthly: Stats;
@@ -209,6 +211,12 @@ export default function Insights() {
                   <span className={styles.label}>Runs</span>
                   <span className={styles.value}>{currentStats.count}</span>
                 </div>
+                <button 
+                  className={styles.storyButton}
+                  onClick={() => setIsStoryModalOpen(true)}
+                >
+                  Create Story
+                </button>
               </div>
 
               <div className={styles.heatmapSection}>
@@ -220,6 +228,14 @@ export default function Insights() {
                 </div>
               </div>
             </div>
+            
+            <HeatmapStoryModal 
+              isOpen={isStoryModalOpen}
+              onClose={() => setIsStoryModalOpen(false)}
+              points={currentStats.heatPoints}
+              stats={currentStats}
+              rangeName={selectedRange === 'allTime' ? 'All Time' : selectedRange.charAt(0).toUpperCase() + selectedRange.slice(1)}
+            />
           </>
         )}
       </div>
