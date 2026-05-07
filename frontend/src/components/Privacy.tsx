@@ -30,7 +30,7 @@ export default function Privacy() {
 
     setIsDeleting(true);
     try {
-      // 1. Delete all runs associated with the user
+      // 1. Delete all runs associated with the user first (optional if CASCADE is set up, but safer)
       const { error: runsError } = await supabase
         .from('runs')
         .delete()
@@ -38,19 +38,16 @@ export default function Privacy() {
 
       if (runsError) throw runsError;
 
-      // 2. Delete the user (Note: In a standard Supabase setup, users cannot delete themselves 
-      // via the client SDK for security reasons. Usually, this requires a service role or a specific 
-      // RPC/Edge function. However, we will use the signOut first to clean up local state, 
-      // and for this project, we'll assume the user's intent is to be removed from the data logic.)
+      // 2. Call the RPC function to delete the user from auth.users
+      const { error: deleteError } = await supabase.rpc('delete_user');
       
-      // In a real-world app, you'd call a Supabase Edge Function here to delete the Auth user.
-      // For now, we will sign them out and inform them.
-      
-      const { error: signOutError } = await supabase.auth.signOut();
-      if (signOutError) throw signOutError;
+      if (deleteError) throw deleteError;
+
+      // 3. Sign out to clear local session
+      await supabase.auth.signOut();
 
       alert("Your data and account have been successfully removed.");
-      navigate('/login');
+      navigate('/');
     } catch (err: any) {
       console.error("Deletion failed:", err);
       alert("An error occurred while deleting your account: " + err.message);
