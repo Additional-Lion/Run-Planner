@@ -17,6 +17,8 @@ export default function About() {
           <div className={styles.contourLine} />
           <div className={styles.contourLine} />
           <div className={styles.contourLine} />
+          <div className={styles.contourLine} />
+          <div className={styles.contourLine} />
         </div>
       </div>
 
