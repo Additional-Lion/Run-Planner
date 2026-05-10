@@ -7,8 +7,8 @@
 }
 
 .header {
-  background-color: #1a1a1a;
-  color: white;
+  background-color: var(--header-bg);
+  color: var(--header-text);
   padding: 1rem;
   box-shadow: 0 2px 10px rgba(0,0,0,0.2);
   z-index: 10; /* Keep above map */
@@ -27,7 +27,7 @@
 }
 
 .logo {
-  color: white;
+  color: var(--header-text);
   text-decoration: none;
   font-size: 1.5rem;
   font-weight: 600;
@@ -41,7 +41,7 @@
 }
 
 .navLink {
-  color: white;
+  color: var(--header-text);
   text-decoration: none;
   font-size: 0.9rem;
   opacity: 0.8;
@@ -51,7 +51,7 @@
 .navLinkButton {
   background: none;
   border: none;
-  color: white;
+  color: var(--header-text);
   text-decoration: none;
   font-size: 0.9rem;
   opacity: 0.8;
@@ -81,7 +81,7 @@
   display: block;
   height: 2px;
   width: 100%;
-  background-color: white;
+  background-color: var(--header-text);
   border-radius: 2px;
 }
 
@@ -104,7 +104,7 @@
   left: 0;
   right: 0;
   bottom: 0;
-  background: rgba(0, 0, 0, 0.4);
+  background: var(--overlay-bg);
   backdrop-filter: blur(8px);
   z-index: 2000;
   display: flex;
@@ -114,10 +114,10 @@
 .sidebar {
   width: 90%;
   max-width: 500px;
-  background: rgba(255, 255, 255, 0.9);
+  background: var(--sidebar-bg);
   backdrop-filter: blur(20px);
   height: 100%;
-  box-shadow: -10px 0 30px rgba(0,0,0,0.1);
+  box-shadow: -10px 0 30px var(--border-light);
   display: flex;
   flex-direction: column;
   position: relative;
@@ -220,7 +220,7 @@
 .logoDot {
   width: 8px;
   height: 8px;
-  background: #35ec2f;
+  background: var(--accent-green);
   border-radius: 50%;
   box-shadow: 0 0 10px rgba(53, 236, 47, 0.6);
 }
@@ -229,7 +229,7 @@
   margin: 0;
   font-size: 1.5rem;
   font-weight: 800;
-  color: #1a1a1a;
+  color: var(--text-primary);
   letter-spacing: -0.5px;
 }
 
@@ -270,7 +270,7 @@
   align-items: center;
   gap: 15px;
   padding: 1.2rem 1.5rem;
-  color: #1a1a1a;
+  color: var(--text-primary);
   text-decoration: none;
   font-size: 1.1rem;
   font-weight: 600;
@@ -291,7 +291,7 @@
 
 .sidebarDivider {
   height: 1px;
-  background: linear-gradient(90deg, transparent, rgba(0,0,0,0.05), transparent);
+  background: linear-gradient(90deg, transparent, var(--border-light), transparent);
   margin: 1rem 1.5rem;
 }
 
@@ -301,7 +301,7 @@
 
 .sectionHeader h4 {
   margin: 0 0 1.5rem;
-  color: #95a5a6;
+  color: var(--text-muted);
   text-transform: uppercase;
   font-size: 0.75rem;
   font-weight: 700;
@@ -309,14 +309,14 @@
 }
 
 .sidebarInsightsWrapper {
-  background: rgba(255, 255, 255, 0.5);
+  background: var(--sidebar-bg);
   border-radius: 24px;
-  border: 1px solid rgba(255, 255, 255, 0.8);
+  border: 1px solid var(--border-color);
   box-shadow: 0 10px 30px rgba(0,0,0,0.03);
 }
 
 .closeSidebar {
-  background: rgba(0, 0, 0, 0.05);
+  background: var(--border-light);
   border: none;
   width: 40px;
   height: 40px;
@@ -326,19 +326,19 @@
   justify-content: center;
   align-items: center;
   cursor: pointer;
-  color: #1a1a1a;
+  color: var(--text-primary);
   transition: all 0.2s;
 }
 
 .closeSidebar:hover {
-  background: rgba(0, 0, 0, 0.1);
+  background: var(--border-light);
   transform: rotate(90deg);
 }
 
 .logoutButton {
   background: transparent;
-  border: 1px solid rgba(255, 255, 255, 0.4);
-  color: white;
+  border: 1px solid var(--border-light);
+  color: var(--header-text);
   padding: 5px 15px;
   border-radius: 5px;
   cursor: pointer;
@@ -347,14 +347,14 @@
 }
 
 .logoutButton:hover {
-  background: white;
-  color: #1a1a1a;
+  background: var(--modal-bg);
+  color: var(--text-primary);
 }
 
 .mainContent {
   flex: 1; /* Take up all remaining space */
   position: relative;
-  background-color: #f8f9fa;
+  background-color: var(--bg-tertiary);
   overflow-y: auto;
 }
 
@@ -373,11 +373,9 @@
 }
 
 .controlPanel {
-  background-color: white;
+  background-color: var(--modal-bg);
   padding: 1.5rem;
-  border-top-left-radius: 20px;
-  border-top-right-radius: 20px;
-  box-shadow: 0 -4px 20px rgba(0,0,0,0.1);
+  box-shadow: 0 -4px 20px var(--border-light);
   z-index: 10; /* Keep above map */
   display: flex;
   justify-content: space-around;
@@ -387,7 +385,7 @@
 
 .privacyLabel {
   font-size: 0.875rem;
-  color: #7f8c8d;
+  color: var(--text-muted);
   text-transform: uppercase;
   letter-spacing: 1px;
   text-decoration: none;
@@ -398,7 +396,7 @@
 }
 
 .privacyLabel:hover {
-  color: #007bff;
+  color: var(--accent-blue);
   background: rgba(0, 123, 255, 0.05);
 }
 
@@ -408,8 +406,8 @@
 }
 
 .findMeButton, .findMeMobileButton {
-  background-color: #007bff;
-  color: white;
+  background-color: var(--accent-blue);
+  color: var(--header-text);
   border: none;
   padding: 8px 16px;
   border-radius: 8px;
@@ -421,19 +419,19 @@
 }
 
 .findMeButton:hover, .findMeMobileButton:hover {
-  background-color: #0056b3;
+  background-color: var(--accent-blue-hover);
 }
 
 .findMeButton:active, .findMeMobileButton:active {
-  background-color: #004085;
+  background-color: var(--accent-blue-active);
 }
 
 @media (hover: none) {
   .findMeButton:hover, .findMeMobileButton:hover {
-    background-color: #007bff; /* Reset hover on touch devices */
+    background-color: var(--accent-blue); /* Reset hover on touch devices */
   }
   .findMeButton:active, .findMeMobileButton:active {
-    background-color: #004085;
+    background-color: var(--accent-blue-active);
   }
 }
 
@@ -442,23 +440,56 @@
 }
 
 .controlButton {
-  background: #f1f1f1;
+  background: var(--bg-hover);
+  color: var(--text-primary);
   border: none;
   padding: 8px 16px;
   border-radius: 8px;
   font-weight: 600;
   cursor: pointer;
-  transition: background 0.2s;
+  transition: background 0.2s, transform 0.2s;
 }
 
-.controlButton:hover:not(:disabled) {
-  background: #e0e0e0;
+.clearButton {
+  background: var(--bg-hover);
+  color: var(--text-primary);
+  border: none;
+  padding: 8px 16px;
+  border-radius: 8px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background 0.2s, color 0.2s, transform 0.2s;
+}
+
+@media (hover: hover) {
+  .controlButton:hover:not(:disabled) {
+    background: var(--bg-hover-dark);
+    transform: translateY(-2px);
+  }
+
+  .clearButton:hover:not(:disabled) {
+    background: var(--red-delete);
+    color: white;
+    transform: translateY(-2px);
+  }
+}
+
+.controlButton:active:not(:disabled) {
+  background: var(--bg-hover-dark);
+  transform: translateY(-2px);
+}
+
+.clearButton:active:not(:disabled) {
+  background: var(--red-delete);
+  color: white;
+  transform: translateY(-2px);
 }
 
 .disabledButton {
-  background: #f9f9f9;
-  color: #ccc;
+  background: var(--bg-hover) !important;
+  color: var(--text-muted) !important;
   cursor: not-allowed;
+  transform: none !important;
 }
 
 .statBox {
@@ -468,19 +499,19 @@
 .statValue {
   font-size: 1.5rem;
   font-weight: bold;
-  color: #2c3e50;
+  color: var(--text-primary);
 }
 
 .statLabel {
   font-size: 0.875rem;
-  color: #7f8c8d;
+  color: var(--text-muted);
   text-transform: uppercase;
   letter-spacing: 0.5px;
   margin-top: 0.25rem;
 }
 
 .saveButton {
-  background-color: #35ec2f;
+  background-color: var(--accent-green);
   color: #1a1a1a;
   border: none;
   padding: 12px 24px;
@@ -488,18 +519,28 @@
   font-weight: bold;
   font-size: 1rem;
   cursor: pointer;
-  transition: transform 0.2s, background-color 0.3s;
+  transition: transform 0.2s, background-color 0.3s, box-shadow 0.2s;
 }
 
-.saveButton:hover:not(:disabled) {
-  background-color: #2cc927;
+@media (hover: hover) {
+  .saveButton:hover:not(:disabled) {
+    background-color: var(--accent-green-hover);
+    transform: scale(1.05);
+    box-shadow: 0 4px 15px rgba(53, 236, 47, 0.4);
+  }
+}
+
+.saveButton:active:not(:disabled) {
+  background-color: var(--accent-green-hover);
   transform: scale(1.05);
+  box-shadow: 0 4px 15px rgba(53, 236, 47, 0.4);
 }
 
 .saveButton:disabled {
-  background-color: #a3cfa1; /* Greyish green */
-  color: #666;
+  background-color: var(--bg-hover);
+  color: var(--text-muted);
   cursor: not-allowed;
+  box-shadow: none;
 }
 
 .privacyPanelLink {
@@ -507,7 +548,7 @@
   bottom: 8px;
   right: 20px;
   font-size: 0.65rem;
-  color: #bdc3c7;
+  color: var(--text-muted);
   text-decoration: none;
   font-weight: 700;
   text-transform: uppercase;
@@ -516,12 +557,12 @@
 }
 
 .privacyPanelLink:hover {
-  color: #007bff;
+  color: var(--accent-blue);
 }
 
 .guestSaveButton {
-  background-color: #a3cfa1; /* Greyish green */
-  color: #666;
+  background-color: var(--bg-hover);
+  color: var(--text-muted);
   border: none;
   padding: 12px 24px;
   border-radius: 12px;
@@ -542,7 +583,7 @@
 .tooltipText {
   visibility: hidden;
   width: 180px;
-  background-color: #1a1a1a;
+  background-color: var(--header-bg);
   color: #fff;
   text-align: center;
   border-radius: 8px;
@@ -568,7 +609,7 @@
   margin-left: -5px;
   border-width: 5px;
   border-style: solid;
-  border-color: #1a1a1a transparent transparent transparent;
+  border-color: var(--text-primary) transparent transparent transparent;
 }
 
 /* Show the tooltip text when hovering over the container */
@@ -584,7 +625,7 @@
   left: 0;
   right: 0;
   bottom: 0;
-  background: rgba(0, 0, 0, 0.7);
+  background: var(--overlay-bg);
   display: flex;
   justify-content: center;
   align-items: center;
@@ -593,7 +634,7 @@
 }
 
 .modal {
-  background: white;
+  background: var(--modal-bg);
   padding: 30px;
   border-radius: 20px;
   width: 90%;
@@ -603,7 +644,7 @@
 
 .modal h3 {
   margin-top: 0;
-  color: #1a1a1a;
+  color: var(--text-primary);
   margin-bottom: 20px;
 }
 
@@ -615,7 +656,7 @@
 
 .modal label {
   font-size: 0.9rem;
-  color: #666;
+  color: var(--text-secondary);
   margin-bottom: 5px;
   display: block;
 }
@@ -627,11 +668,11 @@
 .dateInput {
   width: 100%;
   padding: 12px;
-  border: 1px solid #ddd;
+  border: 1px solid var(--border-color);
   border-radius: 10px;
   font-size: 1rem;
-  color: #1a1a1a;
-  background-color: white;
+  color: var(--text-primary);
+  background-color: var(--header-text);
 }
 
 .durationInputs {
@@ -647,7 +688,7 @@
 
 .modal input {
   padding: 12px;
-  border: 1px solid #ddd;
+  border: 1px solid var(--border-color);
   border-radius: 10px;
   font-size: 1rem;
   width: 100%;
@@ -670,13 +711,13 @@
 }
 
 .modalButtons button[type="button"] {
-  background: #eee;
-  color: #666;
+  background: var(--bg-hover);
+  color: var(--text-secondary);
 }
 
 .modalButtons button[type="submit"] {
-  background: #35ec2f;
-  color: #1a1a1a;
+  background: var(--accent-green);
+  color: var(--text-primary);
 }
 
 @media (max-width: 768px) {
@@ -772,7 +813,7 @@
     box-sizing: border-box;
   }
 
-  .controlButton {
+  .controlButton, .clearButton {
     padding: 12px;
     font-size: 0.9rem;
     width: 100%; /* Wide version */

@@ -4,7 +4,7 @@
   position: relative;
   padding: 5vh 5vw;
   overflow: hidden;
-  background-color: #ffffff;
+  background-color: var(--bg-primary);
   display: flex;
   flex-direction: column;
 }
@@ -128,7 +128,7 @@
   padding: 0;
   max-width: 1200px;
   margin: 0 auto;
-  color: #1a1a1a;
+  color: var(--text-primary);
   display: flex;
   flex-direction: column;
   gap: 1.5rem;
@@ -145,7 +145,7 @@
 .title {
   font-size: 3rem;
   font-weight: 800;
-  color: #0B132B;
+  color: var(--text-primary);
   margin-bottom: 1.5rem;
   text-align: center;
   letter-spacing: -0.1rem;
@@ -155,7 +155,7 @@
   display: flex;
   justify-content: center;
   gap: 10px;
-  background: rgba(241, 241, 241, 0.85);
+  background: var(--sidebar-bg);
   backdrop-filter: blur(12px);
   padding: 5px;
   border-radius: 12px;
@@ -170,14 +170,14 @@
   padding: 8px 16px;
   border-radius: 8px;
   font-weight: 600;
-  color: #666;
+  color: var(--text-secondary);
   cursor: pointer;
   transition: all 0.2s;
 }
 
 .activeRange {
-  background: white;
-  color: #007bff;
+  background: var(--modal-bg);
+  color: var(--accent-blue);
   box-shadow: 0 2px 8px rgba(0,0,0,0.12);
 }
 
@@ -194,7 +194,7 @@
   display: flex;
   flex-direction: column;
   gap: 1rem;
-  background: rgba(255, 255, 255, 0.65);
+  background: var(--sidebar-bg);
   backdrop-filter: blur(18px);
   padding: 1.25rem;
   border-radius: 20px;
@@ -204,8 +204,8 @@
 
 .storyButton {
   margin-top: 0.5rem;
-  background: #007bff;
-  color: white;
+  background: var(--accent-blue);
+  color: var(--header-text);
   border: none;
   padding: 10px;
   border-radius: 12px;
@@ -218,7 +218,7 @@
 }
 
 .storyButton:hover {
-  background: #0056b3;
+  background: var(--accent-blue-hover);
   transform: translateY(-2px);
   box-shadow: 0 6px 20px rgba(0, 123, 255, 0.3);
 }
@@ -236,7 +236,7 @@
 
 .label {
   font-size: 0.75rem;
-  color: #7f8c8d;
+  color: var(--text-muted);
   text-transform: uppercase;
   letter-spacing: 0.5px;
   margin-bottom: 0.2rem;
@@ -245,11 +245,11 @@
 .value {
   font-size: clamp(1.1rem, 1.8vw, 1.4rem);
   font-weight: 700;
-  color: #2c3e50;
+  color: var(--text-primary);
 }
 
 .heatmapSection {
-  background: rgba(255, 255, 255, 0.8);
+  background: var(--sidebar-bg);
   backdrop-filter: blur(12px);
   padding: 1.25rem;
   border-radius: 20px;
@@ -258,14 +258,14 @@
   flex-direction: column;
   gap: 0.75rem;
   min-height: 450px;
-  border: 1px solid rgba(255, 255, 255, 0.8);
+  border: 1px solid var(--border-color);
   flex: 1;
 }
 
 .heatmapTitle {
   margin: 0;
   font-size: 1.5rem;
-  color: #0B132B;
+  color: var(--text-primary);
   font-weight: 700;
   display: flex;
   align-items: center;
@@ -276,7 +276,7 @@
   content: '';
   width: 4px;
   height: 24px;
-  background: #007bff;
+  background: var(--accent-blue);
   border-radius: 2px;
 }
 
@@ -294,33 +294,33 @@
   align-items: center;
   height: 200px;
   font-size: 1.2rem;
-  color: #7f8c8d;
+  color: var(--text-muted);
 }
 
 /* Unauthenticated State Styles */
 .emptyState {
-  background: rgba(255, 255, 255, 0.7);
+  background: var(--sidebar-bg);
   backdrop-filter: blur(15px);
   padding: 4rem 2rem;
   border-radius: 1.5rem;
   text-align: center;
-  border: 1px solid rgba(255, 255, 255, 0.8);
+  border: 1px solid var(--border-color);
   box-shadow: 0 1rem 2rem rgba(0, 0, 0, 0.03);
-  color: #7f8c8d;
+  color: var(--text-muted);
 }
 
 .loginLink {
-  color: #7f8c8d;
+  color: var(--text-muted);
   text-decoration: none;
-  border-bottom: 2px dotted #7f8c8d;
+  border-bottom: 2px dotted var(--text-muted);
   cursor: pointer;
   font-weight: 700;
   transition: all 0.2s;
 }
 
 .loginLink:hover {
-  color: #007bff;
-  border-color: #007bff;
+  color: var(--accent-blue);
+  border-color: var(--accent-blue);
 }
 
 @media (max-width: 1024px) {

@@ -1,7 +1,7 @@
 .pageWrapper {
   min-height: 100%;
   width: 100%;
-  background-color: #ffffff;
+  background-color: var(--bg-primary);
   position: relative;
   padding: 5vh 5vw;
   cursor: default;
@@ -32,7 +32,7 @@
   height: 100%;
   z-index: 0;
   pointer-events: none;
-  background-color: #ffffff;
+  background-color: var(--bg-primary);
   overflow: hidden;
 }
 
@@ -85,17 +85,17 @@
 }
 
 .loginLink {
-  color: #7f8c8d;
+  color: var(--text-muted);
   text-decoration: none;
-  border-bottom: 2px dotted #7f8c8d;
+  border-bottom: 2px dotted var(--text-muted);
   cursor: pointer;
   font-weight: 700;
   transition: color 0.2s, border-color 0.2s;
 }
 
 .loginLink:hover {
-  color: #35ec2f;
-  border-color: #35ec2f;
+  color: var(--accent-green);
+  border-color: var(--accent-green);
 }
 
 .container {
@@ -108,7 +108,7 @@
 .title {
   font-size: 3rem;
   font-weight: 800;
-  color: #0A2303;
+  color: var(--text-primary);
   margin-bottom: 3rem;
   text-align: center;
   letter-spacing: -0.1rem;
@@ -117,19 +117,19 @@
 .loading {
   padding: 4rem;
   text-align: center;
-  color: #7f8c8d;
+  color: var(--text-muted);
   font-weight: 500;
 }
 
 .emptyState {
-  background: rgba(255, 255, 255, 0.7);
+  background: var(--sidebar-bg);
   backdrop-filter: blur(15px);
   padding: 4rem 2rem;
   border-radius: 1.5rem;
   text-align: center;
-  border: 1px solid rgba(255, 255, 255, 0.8);
+  border: 1px solid var(--border-color);
   box-shadow: 0 1rem 2rem rgba(0, 0, 0, 0.03);
-  color: #7f8c8d;
+  color: var(--text-muted);
 }
 
 .runList {
@@ -139,7 +139,7 @@
 }
 
 .runCard {
-  background: rgba(255, 255, 255, 0.75);
+  background: var(--sidebar-bg);
   backdrop-filter: blur(12px);
   border: 1px solid rgba(255, 255, 255, 0.6);
   padding: 1.5rem 2rem;
@@ -163,7 +163,7 @@
   background: linear-gradient(
     90deg,
     transparent,
-    rgba(255, 255, 255, 0.4),
+    var(--border-light),
     transparent
   );
   transition: 0.6s;
@@ -175,7 +175,7 @@
 
 .runCard:hover {
   transform: translateY(-0.5rem) scale(1.02);
-  background: rgba(255, 255, 255, 0.95);
+  background: var(--modal-bg);
   box-shadow: 0 1.5rem 3rem rgba(53, 236, 47, 0.15);
   border-color: rgba(53, 236, 47, 0.4);
 }
@@ -216,8 +216,8 @@
 }
 
 .viewPathButton:hover {
-  background: #35ec2f;
-  color: #ffffff;
+  background: var(--accent-green);
+  color: var(--header-text);
 }
 
 .storyButton {
@@ -226,7 +226,7 @@
   right: 135px; /* Shifted left to make room for View Path */
   background: rgba(0, 123, 255, 0.1);
   border: 1px solid rgba(0, 123, 255, 0.3);
-  color: #007bff;
+  color: var(--accent-blue);
   font-size: 0.8rem;
   font-weight: 600;
   cursor: pointer;
@@ -236,8 +236,8 @@
 }
 
 .storyButton:hover {
-  background: #007bff;
-  color: #ffffff;
+  background: var(--accent-blue);
+  color: var(--header-text);
 }
 
 .runInfo {
@@ -247,7 +247,7 @@
 
 .date {
   font-size: 0.85rem;
-  color: #95a5a6;
+  color: var(--text-muted);
   font-weight: 600;
   margin-bottom: 4px;
 }
@@ -255,7 +255,7 @@
 .distance {
   font-size: 1.75rem;
   font-weight: 800;
-  color: #1a1a1a;
+  color: var(--text-primary);
 }
 
 .runDetails {
@@ -271,13 +271,13 @@
 }
 
 .statValue {
-  color: #35ec2f;
+  color: var(--accent-green);
   font-size: 1.1rem;
 }
 
 .statLabel {
   font-size: 0.7rem;
-  color: #bdc3c7;
+  color: var(--text-muted);
   text-transform: uppercase;
   letter-spacing: 0.5px;
 }
@@ -297,7 +297,7 @@
   
   .runDetails {
     justify-content: space-between;
-    border-top: 1px solid rgba(0, 0, 0, 0.05);
+    border-top: 1px solid var(--border-light);
     padding-top: 12px;
   }
 

@@ -23,12 +23,18 @@ interface MapProps {
   clearRouteRef?: React.MutableRefObject<(() => void) | null>;
 }
 
+import { useTheme } from '../context/ThemeContext';
+
 const LocationMarker = ({ points, setPoints, routeLine }: { points: LatLng[], setPoints: React.Dispatch<React.SetStateAction<LatLng[]>>, routeLine: [number, number][] }) => {
+  const { theme } = useTheme();
   useMapEvents({
     click(e) {
       setPoints(prevPoints => [...prevPoints, e.latlng]);
     },
   });
+
+  // Use distinct blue in light mode, vibrant green in dark mode
+  const routeColor = theme === 'light' ? '#3a8ffd' : '#35ec2f';
 
   return (
     <>
@@ -36,7 +42,7 @@ const LocationMarker = ({ points, setPoints, routeLine }: { points: LatLng[], se
         <Marker key={idx} position={p} />
       ))}
       {routeLine.length > 0 && (
-        <Polyline positions={routeLine} color="#35ec2fff" weight={5} opacity={0.8} />
+        <Polyline positions={routeLine} color={routeColor} weight={5} opacity={0.8} />
       )}
     </>
   );

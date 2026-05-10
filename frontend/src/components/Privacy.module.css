@@ -1,7 +1,7 @@
 .pageWrapper {
   min-height: 100%;
   width: 100%;
-  background: #ffffff;
+  background: var(--bg-primary);
   position: relative;
   overflow-x: hidden;
   padding: 80px 20px;
@@ -80,13 +80,13 @@
 .title {
   font-size: 3rem;
   font-weight: 800;
-  color: #1E272E;
+  color: var(--text-primary);
   letter-spacing: -0.1rem;
   text-align: center;
 }
 
 .contentCard {
-  background: rgba(255, 255, 255, 0.8);
+  background: var(--sidebar-bg);
   backdrop-filter: blur(20px);
   padding: 3rem;
   border-radius: 24px;
@@ -99,7 +99,7 @@
 
 .section h2 {
   font-size: 1.5rem;
-  color: #1E272E;
+  color: var(--text-primary);
   margin-bottom: 1rem;
   font-weight: 700;
   display: flex;
@@ -116,7 +116,7 @@
 }
 
 .section p {
-  color: #2d3436;
+  color: var(--text-secondary);
   line-height: 1.7;
   font-size: 1.05rem;
 }
@@ -131,7 +131,7 @@
 }
 
 .section li {
-  color: #2d3436;
+  color: var(--text-secondary);
   padding-left: 20px;
   position: relative;
 }
@@ -150,28 +150,28 @@
 .important {
   margin-top: 1.5rem;
   padding: 1rem;
-  background: rgba(0, 98, 102, 0.05);
+  background: rgba(0, 98, 102, 0.15);
   border-radius: 12px;
-  border-left: 4px solid #006266;
+  border-left: 4px solid var(--accent-green);
   font-weight: 600 !important;
-  color: #006266 !important;
+  color: var(--text-primary) !important;
 }
 
 .dangerZone {
   margin-top: 2rem;
   padding-top: 2rem;
-  border-top: 1px solid rgba(0, 0, 0, 0.05);
+  border-top: 1px solid var(--border-light);
 }
 
 .dangerZone h3 {
-  color: #e74c3c;
+  color: var(--red-delete);
   font-size: 1.25rem;
   margin-bottom: 0.5rem;
 }
 
 .dangerZone p {
   font-size: 0.95rem;
-  color: #718096;
+  color: var(--text-muted);
   margin-bottom: 1.5rem;
 }
 
@@ -183,8 +183,8 @@
 
 .deleteButton {
   background: #fff;
-  color: #e74c3c;
-  border: 2px solid #e74c3c;
+  color: var(--red-delete);
+  border: 2px solid var(--red-delete);
   padding: 12px 24px;
   border-radius: 12px;
   font-weight: 700;
@@ -211,7 +211,7 @@
 }
 
 .deleteButton:hover:not(:disabled) {
-  background: #e74c3c;
+  background: var(--red-delete);
   color: #fff;
   transform: translateY(-2px);
   box-shadow: 0 4px 15px rgba(231, 76, 60, 0.2);
@@ -226,7 +226,7 @@
   align-self: center;
   background: none;
   border: none;
-  color: #718096;
+  color: var(--text-muted);
   font-weight: 600;
   cursor: pointer;
   padding: 10px;

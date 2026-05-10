@@ -3,7 +3,7 @@
   justify-content: center;
   align-items: center;
   min-height: calc(100vh - 80px);
-  background-color: #ffffff;
+  background-color: var(--bg-primary);
   padding: 20px;
   position: relative;
   overflow: hidden;
@@ -118,29 +118,29 @@
 }
 
 .authBox {
-  background: rgba(255, 255, 255, 0.85);
+  background: var(--sidebar-bg);
   backdrop-filter: blur(20px);
   -webkit-backdrop-filter: blur(20px);
   padding: 40px;
   border-radius: 32px;
   width: 100%;
   max-width: 400px;
-  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.05);
+  box-shadow: 0 20px 60px var(--border-light);
   text-align: center;
-  border: 1px solid rgba(255, 255, 255, 0.8);
+  border: 1px solid var(--border-color);
   position: relative;
   z-index: 10;
 }
 
 .title {
   font-size: 1.75rem;
-  color: #1a1a1a;
+  color: var(--text-primary);
   margin-bottom: 8px;
   font-weight: 700;
 }
 
 .subtitle {
-  color: #7f8c8d;
+  color: var(--text-muted);
   font-size: 0.95rem;
   margin-bottom: 32px;
 }
@@ -153,23 +153,24 @@
 
 .input {
   padding: 14px 18px;
-  border: 1.5px solid #eee;
+  border: 1.5px solid var(--bg-hover);
   border-radius: 12px;
   font-size: 1rem;
   transition: all 0.2s;
-  background-color: #fafafa;
+  background-color: var(--bg-primary);
+  color: var(--text-primary);
 }
 
 .input:focus {
   outline: none;
-  border-color: #35ec2f;
-  background-color: white;
+  border-color: var(--accent-green);
+  background-color: var(--bg-secondary);
   box-shadow: 0 0 0 4px rgba(53, 236, 47, 0.1);
 }
 
 .button {
-  background-color: #35ec2f;
-  color: #1a1a1a;
+  background-color: var(--accent-green);
+  color: var(--text-primary);
   border: none;
   padding: 14px;
   border-radius: 12px;
@@ -181,13 +182,13 @@
 }
 
 .button:hover:not(:disabled) {
-  background-color: #2cc927;
+  background-color: var(--accent-green-hover);
   transform: translateY(-2px);
   box-shadow: 0 5px 15px rgba(53, 236, 47, 0.3);
 }
 
 .button:disabled {
-  background-color: #a3cfa1;
+  background-color: var(--accent-green-disabled);
   cursor: not-allowed;
   transform: none;
   box-shadow: none;
@@ -205,7 +206,7 @@
 
 .errorMessage {
   background-color: #fff4f4;
-  color: #e74c3c;
+  color: var(--red-delete);
   border: 1px solid rgba(231, 76, 60, 0.1);
 }
 
@@ -218,7 +219,7 @@
 .toggleButton {
   background: transparent;
   border: none;
-  color: #7f8c8d;
+  color: var(--text-muted);
   margin-top: 24px;
   font-size: 0.9rem;
   cursor: pointer;
@@ -228,7 +229,7 @@
 }
 
 .toggleButton:hover {
-  color: #35ec2f;
+  color: var(--accent-green);
 }
 
 .privacyConsent {
@@ -238,7 +239,7 @@
   margin-top: 8px;
   text-align: left;
   font-size: 0.85rem;
-  color: #7f8c8d;
+  color: var(--text-muted);
 }
 
 .privacyConsent input {
@@ -250,15 +251,15 @@
 }
 
 .privacyLink {
-  color: #7f8c8d;
+  color: var(--text-muted);
   font-weight: 700;
-  border-bottom: 2px dotted #7f8c8d;
+  border-bottom: 2px dotted var(--text-muted);
   transition: all 0.2s;
 }
 
 .privacyLink:hover {
-  color: #35ec2f;
-  border-color: #35ec2f;
+  color: var(--accent-green);
+  border-color: var(--accent-green);
 }
 
 /* Adaptive styles for mobile/tablets */

@@ -8,6 +8,7 @@ import History from './components/History';
 import Insights from './components/Insights';
 import Privacy from './components/Privacy';
 import About from './components/About';
+import { ThemeToggle } from './components/ThemeToggle';
 import styles from './App.module.css';
 
 function App() {
@@ -140,6 +141,10 @@ function App() {
             <Link to="/about" className={`${styles.navLink} ${styles.desktopOnly}`}>About</Link>
             <Link to="/privacy" className={`${styles.navLink} ${styles.desktopOnly}`}>Privacy</Link>
             
+            <div className={styles.desktopOnly} style={{ display: 'flex', alignItems: 'center' }}>
+              <ThemeToggle />
+            </div>
+            
             <button 
               onClick={() => setShowInsightsSidebar(true)} 
               className={styles.hamburgerButton}
@@ -205,6 +210,13 @@ function App() {
                 <Link to="/privacy" className={styles.sidebarLink} onClick={() => setShowInsightsSidebar(false)}>
                   <span className={styles.linkIcon}>🛡️</span> Privacy
                 </Link>
+                <div className={styles.sidebarDivider}></div>
+                <div className={styles.sidebarLink} style={{ cursor: 'default' }}>
+                  <span className={styles.linkIcon}>🌓</span> Theme
+                  <div style={{ marginLeft: 'auto' }}>
+                    <ThemeToggle />
+                  </div>
+                </div>
               </nav>
             </div>
           </div>
@@ -259,7 +271,7 @@ function App() {
               Undo
             </button>
             <button 
-              className={`${styles.controlButton} ${pointCount === 0 ? styles.disabledButton : ''}`} 
+              className={`${styles.clearButton} ${pointCount === 0 ? styles.disabledButton : ''}`} 
               onClick={() => clearRouteRef.current?.()}
               disabled={pointCount === 0}
             >

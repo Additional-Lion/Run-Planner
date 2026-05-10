@@ -13,7 +13,7 @@
 }
 
 .modal-content {
-  background: white;
+  background: var(--modal-bg);
   padding: 20px;
   border-radius: 15px;
   width: 80%;
@@ -31,7 +31,7 @@
   font-size: 2rem;
   cursor: pointer;
   z-index: 1001;
-  color: #333;
+  color: var(--text-primary);
 }
 
 .modal-map {
