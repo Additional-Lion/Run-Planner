@@ -112,7 +112,6 @@ export default function History() {
             <div className={`${styles.contourLine} ${styles.p3_l1}`} />
             <div className={`${styles.contourLine} ${styles.p3_l2}`} />
           </div>
-          <div className={styles.activePath} />
         </div>
         
         <div className={styles.container}>
@@ -154,9 +153,6 @@ export default function History() {
           <div className={`${styles.contourLine} ${styles.p3_l1}`} />
           <div className={`${styles.contourLine} ${styles.p3_l2}`} />
         </div>
-
-        {/* The dashed active trail */}
-        <div className={styles.activePath} />
       </div>
 
       <div className={styles.container}>

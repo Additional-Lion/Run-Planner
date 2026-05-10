@@ -73,19 +73,6 @@
 .p3_l1 { width: 45vw; height: 45vw; animation-duration: 32s; animation-delay: -5s; }
 .p3_l2 { width: 30vw; height: 30vw; animation-duration: 30s; animation-delay: -5s; border-color: rgba(53, 236, 47, 0.28); }
 
-/* The 'Trail' that cuts through the map */
-.activePath {
-  position: absolute;
-  width: 200vw;
-  height: 200vh;
-  top: -50vh;
-  left: -50vw;
-  border: 0.4vw dashed rgba(53, 236, 47, 0.5);
-  border-radius: 60% 40% 30% 70% / 60% 30% 70% 40%;
-  filter: blur(1px);
-  animation: slowRotate 60s infinite linear;
-}
-
 @keyframes morph {
   0% { border-radius: 40% 60% 70% 30% / 40% 50% 60% 50%; transform: rotate(0deg); }
   50% { border-radius: 60% 40% 30% 70% / 50% 60% 40% 60%; transform: rotate(10deg) scale(1.05); }
