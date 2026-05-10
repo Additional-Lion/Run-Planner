@@ -163,7 +163,6 @@ export default function Insights() {
           <div className={`${styles.contourLine} ${styles.p2_l1}`} />
           <div className={`${styles.contourLine} ${styles.p2_l2}`} />
         </div>
-        <div className={styles.activePath} />
       </div>
 
       <div className={`${styles.container} ${!isAuthenticated ? styles.unauthContainer : ''}`}>
