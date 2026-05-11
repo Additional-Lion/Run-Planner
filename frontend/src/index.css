@@ -70,7 +70,7 @@ body {
   transition: background-color 0.3s ease, color 0.3s ease;
 }
 
-[data-theme='dark'] .leaflet-layer,
+[data-theme='dark'] .leaflet-tile-pane,
 [data-theme='dark'] .leaflet-control-zoom-in,
 [data-theme='dark'] .leaflet-control-zoom-out,
 [data-theme='dark'] .leaflet-control-attribution {

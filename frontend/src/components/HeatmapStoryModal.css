@@ -68,16 +68,20 @@
   color: var(--text-muted);
 }
 
+.story-header {
+  padding: 24px 48px 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  background: var(--modal-bg);
+  z-index: 10;
+}
+
 .story-map-container {
   flex: 1;
   width: 100%;
   position: relative;
   z-index: 1;
-}
-
-.story-map {
-  width: 100%;
-  height: 100%;
 }
 
 .story-footer {

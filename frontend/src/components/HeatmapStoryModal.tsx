@@ -21,6 +21,22 @@ interface HeatmapStoryModalProps {
   rangeName: string;
 }
 
+const FitBounds = ({ points }: { points: [number, number, number][] }) => {
+  const map = useMap();
+  useEffect(() => {
+    if (points.length > 0) {
+      const lats = points.map(p => p[0]);
+      const lngs = points.map(p => p[1]);
+      const bounds = L.latLngBounds(
+        [Math.min(...lats), Math.min(...lngs)],
+        [Math.max(...lats), Math.max(...lngs)]
+      );
+      map.fitBounds(bounds, { padding: [20, 20], animate: false });
+    }
+  }, [map, points]);
+  return null;
+};
+
 const HeatLayer = ({ points }: { points: [number, number, number][] }) => {
   const map = useMap();
 
@@ -35,15 +51,11 @@ const HeatLayer = ({ points }: { points: [number, number, number][] }) => {
       gradient: { 0.4: '#007bff', 0.6: '#00d4ff', 0.7: '#00ffcc', 0.8: '#fffb00', 1: '#ff0000' }
     }).addTo(map);
 
-    // Find center and fit bounds
-    const lats = points.map(p => p[0]);
-    const lngs = points.map(p => p[1]);
-    const bounds = L.latLngBounds(
-      [Math.min(...lats), Math.min(...lngs)],
-      [Math.max(...lats), Math.max(...lngs)]
-    );
-
-    map.fitBounds(bounds, { padding: [20, 20], animate: false });
+    // Add a specific class to identify the heatmap layer
+    const container = (heatLayer as any)._container || (heatLayer as any).getContainer?.();
+    if (container) {
+      container.classList.add('leaflet-heatmap-layer');
+    }
 
     return () => {
       if (heatLayer && map) {
@@ -78,12 +90,14 @@ const HeatmapStoryModal: React.FC<HeatmapStoryModalProps> = ({ isOpen, onClose, 
 
   if (!isOpen || points.length === 0) return null;
 
+  const tileUrl = 'https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png';
+
   const handleDownload = async () => {
     if (!storyRef.current) return;
     
     try {
-      // Ensure Leaflet has finished rendering
-      await new Promise(resolve => setTimeout(resolve, 2000));
+      // Increased delay to ensure everything is ready
+      await new Promise(resolve => setTimeout(resolve, 3000));
       
       // PASS 1: Capture background (header, map tiles, footer) - Hide heatmap
       const canvasPass1 = await html2canvas(storyRef.current, {
@@ -97,7 +111,11 @@ const HeatmapStoryModal: React.FC<HeatmapStoryModalProps> = ({ isOpen, onClose, 
           const element = clonedDoc.querySelector('.story-card') as HTMLElement;
           if (element) element.style.transform = 'none';
           
-          // Hide Heatmap layer
+          // Hide Heatmap layer specifically
+          const heatmapLayer = clonedDoc.querySelector('.leaflet-heatmap-layer') as HTMLElement;
+          if (heatmapLayer) heatmapLayer.style.visibility = 'hidden';
+          
+          // Fallback hide overlay pane
           const overlayPane = clonedDoc.querySelector('.leaflet-overlay-pane') as HTMLElement;
           if (overlayPane) overlayPane.style.visibility = 'hidden';
         }
@@ -108,23 +126,23 @@ const HeatmapStoryModal: React.FC<HeatmapStoryModalProps> = ({ isOpen, onClose, 
       finalCanvas.height = canvasPass1.height;
       const ctxFinal = finalCanvas.getContext('2d')!;
 
-      // Apply inversion to map if in dark mode
+      // Apply the Leaflet CSS inversion trick manually to the map region of the canvas
       if (theme === 'dark') {
         const mapEl = storyRef.current.querySelector('.story-map-container') as HTMLElement;
-        const renderScale = 2;
-        const mapY = mapEl.offsetTop * renderScale;
-        const mapH = mapEl.offsetHeight * renderScale;
+        const scale = 2; // match html2canvas scale
+        const mapY = mapEl.offsetTop * scale;
+        const mapH = mapEl.offsetHeight * scale;
 
-        // Header
+        // Draw header normally
         ctxFinal.drawImage(canvasPass1, 0, 0, canvasPass1.width, mapY, 0, 0, canvasPass1.width, mapY);
         
-        // Map (Inverted)
+        // Draw map with filter
         ctxFinal.save();
         ctxFinal.filter = 'invert(100%) hue-rotate(180deg) brightness(95%) contrast(90%)';
         ctxFinal.drawImage(canvasPass1, 0, mapY, canvasPass1.width, mapH, 0, mapY, canvasPass1.width, mapH);
         ctxFinal.restore();
 
-        // Footer
+        // Draw footer normally
         const footerY = mapY + mapH;
         const footerH = canvasPass1.height - footerY;
         ctxFinal.drawImage(canvasPass1, 0, footerY, canvasPass1.width, footerH, 0, footerY, canvasPass1.width, footerH);
@@ -132,7 +150,7 @@ const HeatmapStoryModal: React.FC<HeatmapStoryModalProps> = ({ isOpen, onClose, 
         ctxFinal.drawImage(canvasPass1, 0, 0);
       }
 
-      // PASS 2: Capture Heatmap only (Transparent)
+      // PASS 2: Capture Heatmap only (Transparent background)
       const canvasPass2 = await html2canvas(storyRef.current, {
         useCORS: true,
         allowTaint: false,
@@ -147,6 +165,7 @@ const HeatmapStoryModal: React.FC<HeatmapStoryModalProps> = ({ isOpen, onClose, 
             element.style.background = 'transparent';
           }
           
+          // Hide header, footer, and base map tiles
           const header = clonedDoc.querySelector('.story-header') as HTMLElement;
           if (header) header.style.visibility = 'hidden';
           const footer = clonedDoc.querySelector('.story-footer') as HTMLElement;
@@ -154,6 +173,7 @@ const HeatmapStoryModal: React.FC<HeatmapStoryModalProps> = ({ isOpen, onClose, 
           const tilePane = clonedDoc.querySelector('.leaflet-tile-pane') as HTMLElement;
           if (tilePane) tilePane.style.visibility = 'hidden';
           
+          // Make map container backgrounds transparent
           const mapContainer = clonedDoc.querySelector('.story-map-container') as HTMLElement;
           if (mapContainer) mapContainer.style.background = 'transparent';
           const map = clonedDoc.querySelector('.story-map') as HTMLElement;
@@ -161,7 +181,7 @@ const HeatmapStoryModal: React.FC<HeatmapStoryModalProps> = ({ isOpen, onClose, 
         }
       });
 
-      // Composite Heatmap over Map
+      // Composite Pass 2 over Pass 1
       ctxFinal.drawImage(canvasPass2, 0, 0);
       
       const link = document.createElement('a');
@@ -204,9 +224,10 @@ const HeatmapStoryModal: React.FC<HeatmapStoryModalProps> = ({ isOpen, onClose, 
               >
                 <TileLayer
                   attribution=""
-                  url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
+                  url={tileUrl}
                 />
                 <HeatLayer points={points} />
+                <FitBounds points={points} />
               </MapContainer>
             </div>
 
