@@ -1,0 +1,18 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100">
+  <!-- Topographic-inspired circle background -->
+  <circle cx="50" cy="50" r="48" fill="#1a1a1a" />
+  <circle cx="50" cy="50" r="40" fill="none" stroke="#333" stroke-width="2" />
+  <circle cx="50" cy="50" r="32" fill="none" stroke="#444" stroke-width="2" />
+  
+  <!-- Running Figure Stylized -->
+  <g fill="#35ec2f">
+    <circle cx="65" cy="25" r="8" />
+    <path d="M55,35 L45,45 L35,65 L25,85" stroke="#35ec2f" stroke-width="6" stroke-linecap="round" fill="none" />
+    <path d="M55,35 L65,55 L75,65 L85,60" stroke="#35ec2f" stroke-width="6" stroke-linecap="round" fill="none" />
+    <path d="M45,45 L60,45 L75,35" stroke="#35ec2f" stroke-width="6" stroke-linecap="round" fill="none" />
+    <path d="M55,35 Q40,30 30,45" stroke="#35ec2f" stroke-width="6" stroke-linecap="round" fill="none" />
+  </g>
+  
+  <!-- Accent Path -->
+  <path d="M20,80 Q50,70 80,80" stroke="#007bff" stroke-width="4" stroke-linecap="round" fill="none" opacity="0.8" />
+</svg>
