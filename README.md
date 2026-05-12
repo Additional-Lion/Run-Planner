@@ -76,6 +76,7 @@ A lightweight, mobile-first web application designed to help runners map their r
 
 ```text
 frontend/
+├── public/  # Static assets
 ├── src/
 │   ├── components/   # UI Components (Map, History, Insights, etc.)
 │   ├── context/      # Theme Context
