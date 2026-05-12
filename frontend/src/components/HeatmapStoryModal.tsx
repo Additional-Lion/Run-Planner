@@ -111,11 +111,11 @@ const HeatmapStoryModal: React.FC<HeatmapStoryModalProps> = ({ isOpen, onClose, 
           const element = clonedDoc.querySelector('.story-card') as HTMLElement;
           if (element) element.style.transform = 'none';
           
-          // Hide Heatmap layer specifically
+          // Hide ONLY the heatmap layer in Pass 1
           const heatmapLayer = clonedDoc.querySelector('.leaflet-heatmap-layer') as HTMLElement;
           if (heatmapLayer) heatmapLayer.style.visibility = 'hidden';
           
-          // Fallback hide overlay pane
+          // Also hide other potential overlays just in case
           const overlayPane = clonedDoc.querySelector('.leaflet-overlay-pane') as HTMLElement;
           if (overlayPane) overlayPane.style.visibility = 'hidden';
         }
@@ -129,9 +129,16 @@ const HeatmapStoryModal: React.FC<HeatmapStoryModalProps> = ({ isOpen, onClose, 
       // Apply the Leaflet CSS inversion trick manually to the map region of the canvas
       if (theme === 'dark') {
         const mapEl = storyRef.current.querySelector('.story-map-container') as HTMLElement;
-        const scale = 2; // match html2canvas scale
-        const mapY = mapEl.offsetTop * scale;
-        const mapH = mapEl.offsetHeight * scale;
+        const cardRect = storyRef.current.getBoundingClientRect();
+        const mapRect = mapEl.getBoundingClientRect();
+        
+        // Calculate the relative positions. Since the card is scaled in the DOM, 
+        // we must normalize by the current scale and then apply the html2canvas capture scale (2).
+        const currentScale = cardRect.width / 720; 
+        const renderScale = 2; // match html2canvas scale parameter
+        
+        const mapY = ((mapRect.top - cardRect.top) / currentScale) * renderScale;
+        const mapH = (mapRect.height / currentScale) * renderScale;
 
         // Draw header normally
         ctxFinal.drawImage(canvasPass1, 0, 0, canvasPass1.width, mapY, 0, 0, canvasPass1.width, mapY);
@@ -165,19 +172,22 @@ const HeatmapStoryModal: React.FC<HeatmapStoryModalProps> = ({ isOpen, onClose, 
             element.style.background = 'transparent';
           }
           
-          // Hide header, footer, and base map tiles
+          // Hide header, footer
           const header = clonedDoc.querySelector('.story-header') as HTMLElement;
           if (header) header.style.visibility = 'hidden';
           const footer = clonedDoc.querySelector('.story-footer') as HTMLElement;
           if (footer) footer.style.visibility = 'hidden';
-          const tilePane = clonedDoc.querySelector('.leaflet-tile-pane') as HTMLElement;
-          if (tilePane) tilePane.style.visibility = 'hidden';
           
-          // Make map container backgrounds transparent
+          // Hide tiles in map container, but keep other panes (heatmap)
+          const mapEl = clonedDoc.querySelector('.story-map') as HTMLElement;
+          if (mapEl) {
+            mapEl.style.background = 'transparent';
+            const tilePane = mapEl.querySelector('.leaflet-tile-pane') as HTMLElement;
+            if (tilePane) tilePane.style.visibility = 'hidden';
+          }
+          
           const mapContainer = clonedDoc.querySelector('.story-map-container') as HTMLElement;
           if (mapContainer) mapContainer.style.background = 'transparent';
-          const map = clonedDoc.querySelector('.story-map') as HTMLElement;
-          if (map) map.style.background = 'transparent';
         }
       });
 
