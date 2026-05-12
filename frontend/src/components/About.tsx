@@ -44,7 +44,8 @@ export default function About() {
             </p>
             <ul>
               <li><strong>Frontend Framework:</strong> React 19 with TypeScript, utilizing Vite for lightning-fast builds.</li>
-              <li><strong>Mapping & Routing:</strong> Leaflet and React-Leaflet for interactive maps, powered by the Open Source Routing Machine (OSRM) API for accurate pedestrian pathfinding.</li>
+              <li><strong>Mapping & Routing:</strong> Interactive maps using Leaflet with OpenStreetMap tiles, powered by the Open Source
+                Routing Machine (OSRM) API for pedestrian pathfinding.</li>
               <li><strong>Backend & Database:</strong> Supabase (PostgreSQL) for secure user authentication and reliable data persistence.</li>
               <li><strong>Styling:</strong> Pure CSS Modules for scoped, maintainable styles, featuring custom topographic UI elements and smooth animations.</li>
             </ul>
@@ -55,8 +56,9 @@ export default function About() {
             <ul>
               <li><strong>Interactive Route Planning:</strong> Click on the map to draw routes. The app automatically calculates the exact pedestrian path, distance, and estimated calories burned.</li>
               <li><strong>Personal Dashboard:</strong> View a detailed history of your logged runs, including pace calculations and duration.</li>
-              <li><strong>Visual Insights:</strong> Analyze your progress over different time ranges (weekly, monthly, yearly) and visualize your most frequent routes using an interactive heatmap.</li>
+              <li><strong>Visual Insights:</strong> Analyze your progress over different time ranges (weekly, monthly, yearly, all time) and visualize your most frequent routes using an interactive heatmap.</li>
               <li><strong>Story Mode:</strong> Export beautiful, social-media-ready images of your running routes and heatmaps to share with friends.</li>
+              <li><strong>Dark Mode:</strong> Full support for both light and dark themes, including the ability to export your stories in both modes.</li>
             </ul>
           </section>
 
