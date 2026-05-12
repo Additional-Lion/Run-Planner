@@ -10,6 +10,16 @@ A lightweight, mobile-first web application designed to help runners map their r
 
 ---
 
+## 📺 Demo
+
+<picture>
+  <source media="(prefers-color-scheme: dark)" srcset="assets/demo-dark.gif">
+  <source media="(prefers-color-scheme: light)" srcset="assets/demo-light.gif">
+  <img alt="Run Tracker Demo" src="assets/demo-light.gif" width="100%">
+</picture>
+
+---
+
 ## ✨ Key Features
 
 - **📍 Interactive Route Planning:** Click on the map to draw routes. The app automatically calculates the exact pedestrian path using the OSRM API.
